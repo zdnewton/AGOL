@@ -30,8 +30,10 @@
       "esri/views/MapView",
       "esri/widgets/BasemapGallery",
       "esri/widgets/Locate",
-      "esri/widgets/Search"
-    ], function (esriConfig, Map, MapView, BasemapGallery, Locate, Search) {
+      "esri/widgets/Search",
+      "esri/Graphic",  
+      "esri/layers/GraphicsLayer" 
+    ], function (esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic,GraphicsLayer) {
       
       //when API key is active, no basemaps will load in gallery and no search functionality
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurFoJhgAIY5vGdEdRRAp_EKP3hX46okWbzREzvFOzP3eLMTfinmEi1544H3VrGFnlV6so5dUw7YSu9YGDC-954nuy6aTLI9VPTXITBZEeNsSF0B_tJQ2mneOXc37qlXwggQdzOgIhxiVPZ-epbypcjNDg4G07YzvTAEXRmJH4Uzp6A7Fe2exbTdDRIfg-kRmtFyJLbin0Nuyzz1scUr_FYroHbqoG10J0HaQOMyE-HceUAT1_1S7BNGTZ";     
@@ -45,6 +47,35 @@
       zoom: 9, // Zoom level
       container: "viewDiv" // Div element
       });
+
+      const graphicsLayer = new GraphicsLayer();  
+      map.add(graphicsLayer);
+
+      //Defines the geometry of the point
+      const point = { //Create a point  
+        type: "point",  
+        longitude: -103.4538,    //long lat of Mt. Rushmore
+        latitude: 43.8803
+      };
+
+      //Add a Style to the marker symbol
+      const simpleMarkerSymbol = {  
+        type: "simple-marker",  
+        color: [0, 0, 139],  // Color of blues rock
+        outline: {  
+          color: [255, 255, 255], // White  
+          width: 1
+        }  
+      };
+
+      //Adds the location and style to the graphic
+      const pointGraphic = new Graphic({  
+        geometry: point,  
+        symbol: simpleMarkerSymbol  
+      });
+
+      //Adds the point graphic to the graphic layer
+      graphicsLayer.add(pointGraphic);
 
       //Creates a basemap gallery
       const basemapGallery = new BasemapGallery({
