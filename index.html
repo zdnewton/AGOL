@@ -171,7 +171,7 @@
       });      
 
       map.add(NHPLayer);
-
+/*
       //Import Symbol for Airports
       const airportRenderer = {
         "type": "simple",
@@ -181,13 +181,12 @@
           "width": "18px",
           "height": "18px"
         }
-      }
+      };
+*/
+
       //Imports the Airports Feature Layer
       const airportLayer = new FeatureLayer({
-        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Newton/FeatureServer",
-        definitionExpression: "State_Post = 'SD'",
-        //renderer: airportRenderer,  //Calls the picture Icon
-        outFields: ["*"]
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Newton/FeatureServer"
       });      
 
       map.add(airportLayer);
