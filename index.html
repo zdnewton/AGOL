@@ -32,8 +32,9 @@
       "esri/widgets/Locate",
       "esri/widgets/Search",
       "esri/Graphic",  
-      "esri/layers/GraphicsLayer" 
-    ], function (esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic,GraphicsLayer) {
+      "esri/layers/GraphicsLayer",
+      "esri/geometry/Polyline" 
+    ], function (esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic,GraphicsLayer,Polyline) {
       
       //when API key is active, no basemaps will load in gallery and no search functionality
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurFoJhgAIY5vGdEdRRAp_EKP3hX46okWbzREzvFOzP3eLMTfinmEi1544H3VrGFnlV6so5dUw7YSu9YGDC-954nuy6aTLI9VPTXITBZEeNsSF0B_tJQ2mneOXc37qlXwggQdzOgIhxiVPZ-epbypcjNDg4G07YzvTAEXRmJH4Uzp6A7Fe2exbTdDRIfg-kRmtFyJLbin0Nuyzz1scUr_FYroHbqoG10J0HaQOMyE-HceUAT1_1S7BNGTZ";     
@@ -72,7 +73,7 @@
       //Add a Style to the marker symbol
       const simpleMarkerSymbol = {  
         type: "simple-marker",
-        style: "sqaure",
+        style: "square",
         size: 20,  
         color: [255, 0, 0],  // Red
         outline: {  
@@ -89,8 +90,33 @@
         popupTemplate: popupTemplate  //assigns the above template for the popup  
       });
 
+      //Defines the path of the Polyline
+      const linePath = [[-103.6225,43.8373],[-103.4538,43.9939]];
+
+      //Defines the geometry of the polyline
+      const line = { //Create a polyline 
+        type: "polyline",
+        path: linePath
+      };
+      
+      //Define line Symbol
+      const polylineSymbol = {
+        type: "simple-line",
+        color: [0,0,0],
+        width: 4
+      };
+
+      //Adds the location and style to the graphic
+      const lineGraphic = new Graphic({  
+        geometry: line,
+        symbol: polylineSymbol
+      });
+
       //Adds the point graphic to the graphic layer
       graphicsLayer.add(pointGraphic);
+
+      //Add Line to Graphics Layer
+      graphicsLayer.add(lineGraphic);
 
       //Creates a basemap gallery
       const basemapGallery = new BasemapGallery({
