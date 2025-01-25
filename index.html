@@ -73,7 +73,7 @@
       const simpleMarkerSymbol = {  
         type: "simple-marker",
         style: "square",
-        size: 20,  
+        size: 14,  
         color: [255, 0, 0],  // Red
         outline: {  
           color: [0, 0, 0], // Black  
@@ -89,26 +89,14 @@
         popupTemplate: popupTemplate  //assigns the above template for the popup  
       });
 
-      //Defines the path of the Polyline
-      const linePath = [[-103.6225,43.8373],[-103.4538,43.9939]];
+      const line = new Polyline({
+        paths:[[-103.6225,43.8373],[-103.4538,43.9939]]
 
-      //Defines the geometry of the polyline
-      const line = { //Create a polyline 
-        type: "polyline",
-        path: linePath
-      };
-      
-      //Define line Symbol
-      const polylineSymbol = {
-        type: "simple-line",
-        color: [0,0,0],
-        width: 4
-      };
+      })
 
       //Adds the location and style to the graphic
       const lineGraphic = new Graphic({  
-        geometry: line,
-        symbol: polylineSymbol
+        geometry: line
       });
 
       //Adds the point graphic to the graphic layer
@@ -118,6 +106,7 @@
       graphicsLayer.add(lineGraphic);
       
       map.add(graphicsLayer);
+
       //Creates a basemap gallery
       const basemapGallery = new BasemapGallery({
         view: view,        
