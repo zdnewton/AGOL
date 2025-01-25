@@ -51,12 +51,6 @@
       container: "viewDiv" // Div element
       });
 
-      const baseballLayer = new FeatureLayer({
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Major_League_Baseball_Stadiums/FeatureServer"
-      });
-
-      map.add(baseballLayer);
-
       const graphicsLayer = new GraphicsLayer();  
 
       //Defines the geometry of the point
@@ -162,6 +156,12 @@
         view:view
       });
 
+      const baseballLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Major_League_Baseball_Stadiums/FeatureServer"
+      });
+
+      map.add(baseballLayer);
+      
       //Adds the above created widgets to the map interface
       view.ui.add(searchWidget,"top-left"); 
       view.ui.move("zoom", "top-left")          //reorders the zoom widgets to be under the search bar
