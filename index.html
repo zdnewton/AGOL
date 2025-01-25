@@ -182,7 +182,18 @@
           "height": "18px"
         }
       };
-      
+
+       //Heliport Renderer
+       const heliportRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "https://zdnewton.github.io/AGOL/noun-heliport-2432.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      };  
+
       //const to make the airport labels
       const airportLabels = {
         symbol: {
@@ -210,15 +221,25 @@
         renderer: airportRenderer,
         labelingInfo: [airportLabels]
       });
+      
+      //add Heliport FL
+      const heliportLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/US_Airports_Newton/FeatureServer",
+        definitionExpression: "State_Post = 'SD' AND Fac_Type = 'HELIPORT'",
+        renderer: heliportRenderer,
+        labelingInfo: [airportLabels]
+      });
 
       map.add(airportLayer);
+      map.add(heliportLayer);
 
       //Adds the above created widgets to the map interface
       view.ui.add(searchWidget,"top-left"); 
       view.ui.move("zoom", "top-left")          //reorders the zoom widgets to be under the search bar
       view.ui.add(basemapGallery, "top-right");
       view.ui.add(locatebtn, "top-left");
-    });
+    
+     });
 
    </script>
 
