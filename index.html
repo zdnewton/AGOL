@@ -114,6 +114,31 @@
       
       map.add(graphicsLayer);
 
+      // Create a polygon geometry
+      const polygon = {
+        type: "polygon", // autocasts as new Polygon()
+        rings: [[-103, 44], [-101.75, 44], [-101.75, 43.4], [-103, 43.4], [-103,44]]
+        };
+
+      // Create a symbol for rendering the graphic
+      const fillSymbol = {
+        type: "simple-fill", // autocasts as new SimpleFillSymbol()
+        color: [0, 255, 0, 0.5],
+        outline: {
+          // autocasts as new SimpleLineSymbol()
+          color: [0, 0, 0],
+          width: 1
+        }
+      };
+
+      // Add the geometry and symbol to a new graphic
+      const polygonGraphic = new Graphic({
+        geometry: polygon,
+        symbol: fillSymbol
+      });
+
+      //add polygon to Graphics Layer
+      graphicsLayer.add(polygonGraphic);
       //Creates a basemap gallery
       const basemapGallery = new BasemapGallery({
         view: view,        
