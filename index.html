@@ -171,23 +171,14 @@
       });      
 
       map.add(NHPLayer);
-/*
-      //Import Symbol for Airports
-      const airportRenderer = {
-        "type": "simple",
-        "symbol": {
-          "type": "picture-marker",
-          "url": "https://github.com/zdnewton/AGOL/blob/main/local_airport_24dp_E8EAED.png",
-          "width": "18px",
-          "height": "18px"
-        }
-      };
-*/
 
-      //Imports the Airports Feature Layer
+      //add Airport FL
       const airportLayer = new FeatureLayer({
-        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Newton/FeatureServer"
-      });      
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/US_Airports_Newton/FeatureServer",
+        definitionExpression: "State_Post = 'SD'",
+        outFields:["Fac_Name"],
+        popupTemplate: {"title": "{Fac_Name}"}
+      });
 
       map.add(airportLayer);
 
