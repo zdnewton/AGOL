@@ -157,19 +157,19 @@
       });
 
       //Define Popup for eduLayer
-      const popupEduLayer = {
-        "title": "EDUs",
-        "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
+      const popupNHP = {
+        "title": "National Historic Place",
+        "content": "<b>Name:</b> {RESNAME}<br><b>Certified Date:</b> {CertDate}<br>"
       };
 
       //Imports the Feature Layer
-      const eduLayer = new FeatureLayer({
-        url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
-        outFields: ["NAME", "TOT_ENROLL"],
-        popupTemplate: popupEduLayer
+      const NHPLayer = new FeatureLayer({
+        url: "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer",
+        outFields: ["RESNAME", "CertDate"],
+        popupTemplate: popupNHP
       });      
 
-      map.add(eduLayer);
+      map.add(NHPLayer);
 
       //Adds the above created widgets to the map interface
       view.ui.add(searchWidget,"top-left"); 
