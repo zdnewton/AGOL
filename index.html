@@ -156,9 +156,18 @@
         view:view
       });
 
+      //Define Popup for eduLayer
+      const popupEduLayer = {
+        "title": "EDUs",
+        "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
+      };
+
+      //Imports the Feature Layer
       const eduLayer = new FeatureLayer({
-        url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
-      });
+        url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
+        outFields: ["NAME", "TOT_ENROLL"],
+        popupTemplate: popupEduLayer
+      });      
 
       map.add(eduLayer);
 
