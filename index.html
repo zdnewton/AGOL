@@ -159,17 +159,27 @@
       //Define Popup for eduLayer
       const popupNHP = {
         "title": "National Historic Place",
-        "content": "The {RESNAME} was certified in {CertDate.substring(0,3)} and is currently {STATUS} in the register.<br> For more information see {NARA_URL}"
+        "content": "The {RESNAME} was certified in {CertDate} and is currently {STATUS} in the register.<br> <a href='{NARA_URL}'>More Information</a>"
       };
 
-      //Imports the Feature Layer
+      //Imports the NHP Feature Layer
       const NHPLayer = new FeatureLayer({
         url: "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer",
+        definitionExpression: "State = 'SOUTH DAKOTA'",
         outFields: ["RESNAME", "CertDate","STATUS","NARA_URL"],
         popupTemplate: popupNHP
       });      
 
       map.add(NHPLayer);
+
+      //Imports the Airports Feature Layer
+      const airportLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Newton/FeatureServer",
+        definitionExpression: "State_Post = 'SD'",
+        outFields: ["*"]
+      });      
+
+      map.add(airportLayer);
 
       //Adds the above created widgets to the map interface
       view.ui.add(searchWidget,"top-left"); 
