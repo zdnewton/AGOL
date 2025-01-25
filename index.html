@@ -54,15 +54,25 @@
 
       //Defines the geometry of the point
       const point = { //Create a point  
-        type: "point",  
+        type: "point",
         longitude: -103.4538,    //long lat of Mt. Rushmore
         latitude: 43.8803
       };
 
+      //Creates a template for the popup
+      const popupTemplate = {
+          title: "{Name}",
+          content: "{Description}"
+      }
+      //Sets the attributes of the point
+      const attributes = {
+          Name: "Mount Rushmore National Memorial",
+          Description: "National Monument depicting four of the most influencial Amercian Presidents"
+      }
       //Add a Style to the marker symbol
       const simpleMarkerSymbol = {  
         type: "simple-marker",
-        style: "x",
+        style: "sqaure",
         size: 20,  
         color: [255, 0, 0],  // Red
         outline: {  
@@ -74,7 +84,9 @@
       //Adds the location and style to the graphic
       const pointGraphic = new Graphic({  
         geometry: point,  
-        symbol: simpleMarkerSymbol  
+        symbol: simpleMarkerSymbol,
+        attributes: attributes,       //assigns the above attributes to the graphic
+        popupTemplate: popupTemplate  //assigns the above template for the popup  
       });
 
       //Adds the point graphic to the graphic layer
