@@ -51,7 +51,6 @@
       });
 
       const graphicsLayer = new GraphicsLayer();  
-      map.add(graphicsLayer);
 
       //Defines the geometry of the point
       const point = { //Create a point  
@@ -117,7 +116,8 @@
 
       //Add Line to Graphics Layer
       graphicsLayer.add(lineGraphic);
-
+      
+      map.add(graphicsLayer);
       //Creates a basemap gallery
       const basemapGallery = new BasemapGallery({
         view: view,        
