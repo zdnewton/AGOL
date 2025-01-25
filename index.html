@@ -88,17 +88,29 @@
         attributes: attributes,       //assigns the above attributes to the graphic
         popupTemplate: popupTemplate  //assigns the above template for the popup  
       });
-/*
-      //Adds the location and style to the graphic
-      const lineGraphic = new Graphic({  
-        geometry: new Polyline({paths:[[-103.6225,43.8373],[-103.4538,43.9939]]})
-      });
-*/
+
       //Adds the point graphic to the graphic layer
       graphicsLayer.add(pointGraphic);
 
+      //Take 2 Line Graphic Attempt
+      const polyline = {
+        type: "polyline",
+        paths: [[-103.45,43.88], [-103.62,43.84]]
+      };
+
+      const lineSymbol = {
+        type: "simple-line",
+        color: [0,0,0],
+        width: 4
+      };
+
+      const lineGraphic = new Graphic({
+        geometry: polyline,
+        symbol: lineSymbol
+      })
+
       //Add Line to Graphics Layer
-      //graphicsLayer.add(lineGraphic);
+      graphicsLayer.add(lineGraphic);
       
       map.add(graphicsLayer);
 
