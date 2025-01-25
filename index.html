@@ -159,13 +159,13 @@
       //Define Popup for eduLayer
       const popupNHP = {
         "title": "National Historic Place",
-        "content": "<b>Name:</b> {RESNAME}<br><b>Certified Date:</b> {CertDate}<br>"
+        "content": "<b>Name:</b> {RESNAME}<br><b>Certified Date:</b> {CertDate}<br><b>Status:</b> {STATUS}"
       };
 
       //Imports the Feature Layer
       const NHPLayer = new FeatureLayer({
         url: "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer",
-        outFields: ["RESNAME", "CertDate"],
+        outFields: ["RESNAME", "CertDate","STATUS"],
         popupTemplate: popupNHP
       });      
 
